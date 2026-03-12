@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bike Showroom - Login</title>
+
+<style>
+
+:root{
+--main-color:rgb(219,151,15);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* PAGE BACKGROUND */
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#e8edf3,#ffffff);
+}
+
+/* LOGIN CARD */
+
+.login-container{
+width:380px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.login-container h2{
+text-align:center;
+margin-bottom:25px;
+color:var(--main-color);
+}
+
+/* INPUT */
+
+.form-group{
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+transition:0.3s;
+}
+
+input:focus{
+border-color:var(--main-color);
+outline:none;
+box-shadow:0 0 6px rgba(219,151,15,0.4);
+}
+
+/* ERROR */
+
+.error{
+color:red;
+font-size:13px;
+margin-top:5px;
+}
+
+/* BUTTON */
+
+.login-btn{
+width:100%;
+padding:13px;
+background:var(--main-color);
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.login-btn:hover{
+background:black;
+color:white;
+}
+
+/* LINKS */
+
+.links{
+text-align:center;
+margin-top:15px;
+}
+
+.links a{
+color:var(--main-color);
+text-decoration:none;
+font-weight:bold;
+}
+
+.links a:hover{
+text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<div class="form-group">
+<input type="text" id="email" placeholder="Email">
+<div class="error" id="emailError"></div>
+</div>
+
+<div class="form-group">
+<input type="password" id="password" placeholder="Password">
+<div class="error" id="passwordError"></div>
+</div>
+
+<button type="submit" class="login-btn">Login</button>
+
+</form>
+
+<div class="links">
+<p><a href="signup.html">Sign up</a></p>
+<p><a href="home.html">Back to Home</a></p>
+</div>
+
+</div>
+
+<script>
+
+/* LOGIN VALIDATION */
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let email=document.getElementById("email").value.trim();
+let password=document.getElementById("password").value;
+
+let emailError=document.getElementById("emailError");
+let passwordError=document.getElementById("passwordError");
+
+emailError.innerHTML="";
+passwordError.innerHTML="";
+
+let emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+let valid=true;
+
+/* EMAIL CHECK */
+
+if(!email.match(emailPattern)){
+emailError.innerHTML="Enter a valid email";
+valid=false;
+}
+
+/* PASSWORD CHECK */
+
+if(password.length<6){
+passwordError.innerHTML="Password must be at least 6 characters";
+valid=false;
+}
+
+/* SUCCESS */
+
+if(valid){
+alert("Login successful!");
+}
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bike Showroom - Sign Up</title>
+
+<style>
+
+:root{
+--main-color:rgb(219,151,15);
+--dark:black;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* PAGE BACKGROUND */
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#dfe9f3,#ffffff);
+}
+
+/* SIGNUP CARD */
+
+.signup-container{
+width:400px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
+
+.signup-container h2{
+text-align:center;
+margin-bottom:25px;
+color:var(--main-color);
+}
+
+/* INPUT FIELDS */
+
+.form-group{
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+transition:0.3s;
+}
+
+input:focus{
+border-color:var(--main-color);
+outline:none;
+box-shadow:0 0 6px rgba(219,151,15,0.4);
+}
+
+/* ERROR MESSAGE */
+
+.error{
+color:red;
+font-size:13px;
+margin-top:5px;
+}
+
+/* BUTTON */
+
+.signup-btn{
+width:100%;
+padding:13px;
+background:var(--main-color);
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+transition:0.3s;
+}
+
+.signup-btn:hover{
+background:black;
+color:white;
+}
+
+/* LOGIN LINK */
+
+.login-link{
+text-align:center;
+margin-top:15px;
+}
+
+.login-link a{
+color:var(--main-color);
+text-decoration:none;
+font-weight:bold;
+}
+
+.login-link a:hover{
+text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="signup-container">
+
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<div class="form-group">
+<input type="text" id="name" placeholder="Full Name">
+<div class="error" id="nameError"></div>
+</div>
+
+<div class="form-group">
+<input type="text" id="email" placeholder="Email Address">
+<div class="error" id="emailError"></div>
+</div>
+
+<div class="form-group">
+<input type="password" id="password" placeholder="Password">
+<div class="error" id="passwordError"></div>
+</div>
+
+<div class="form-group">
+<input type="password" id="confirmPassword" placeholder="Confirm Password">
+<div class="error" id="confirmError"></div>
+</div>
+
+<button type="submit" class="signup-btn">Sign Up</button>
+
+</form>
+
+<div class="login-link">
+<a href="home.html">← Back to Home</a>
+</div>
+
+</div>
+
+<script>
+
+/* FORM VALIDATION */
+
+document.getElementById("signupForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let password=document.getElementById("password").value;
+let confirm=document.getElementById("confirmPassword").value;
+
+let nameError=document.getElementById("nameError");
+let emailError=document.getElementById("emailError");
+let passwordError=document.getElementById("passwordError");
+let confirmError=document.getElementById("confirmError");
+
+nameError.innerHTML="";
+emailError.innerHTML="";
+passwordError.innerHTML="";
+confirmError.innerHTML="";
+
+let emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+let valid=true;
+
+/* NAME VALIDATION */
+
+if(name===""){
+nameError.innerHTML="Name is required";
+valid=false;
+}
+
+/* EMAIL VALIDATION */
+
+if(!email.match(emailPattern)){
+emailError.innerHTML="Enter a valid email";
+valid=false;
+}
+
+/* PASSWORD VALIDATION */
+
+if(password.length<6){
+passwordError.innerHTML="Password must be at least 6 characters";
+valid=false;
+}
+
+/* CONFIRM PASSWORD */
+
+if(password!==confirm){
+confirmError.innerHTML="Passwords do not match";
+valid=false;
+}
+
+/* SUCCESS */
+
+if(valid){
+alert("Account created successfully!");
+document.getElementById("signupForm").reset();
+}
+
+});
+
+</script>
+
+</body>
+</html>

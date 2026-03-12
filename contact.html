@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+
+<style>
+
+:root{
+--main-color:rgb(219,151,15);
+}
+
+/* PAGE */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#e8edf3,#ffffff);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* CONTACT CARD */
+
+.contact-container{
+width:420px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 20px 50px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+
+
+.contact-container h2{
+margin-bottom:25px;
+font-size:30px;
+text-align:center;
+}
+
+/* INPUT FIELDS */
+
+.form-group{
+margin-bottom:18px;
+}
+
+input, textarea{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+transition:0.3s;
+}
+
+input:focus, textarea:focus{
+border-color:var(--main-color);
+box-shadow:0 0 6px rgba(219,151,15,0.4);
+outline:none;
+}
+
+/* ERROR MESSAGE */
+
+.error{
+color:red;
+font-size:13px;
+margin-top:5px;
+}
+
+/* INVALID INPUT */
+
+.invalid{
+border-color:red;
+}
+
+/* SEND BUTTON */
+
+.send-btn{
+width:100%;
+padding:14px;
+background:var(--main-color);
+border:none;
+border-radius:8px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+transition:0.3s;
+}
+
+.send-btn:hover{
+background:black;
+color:white;
+letter-spacing:1px;
+}
+
+/* BACK BUTTON */
+
+.go-back{
+display:block;
+text-align:center;
+background:#ddd;
+color:black;
+padding:14px;
+margin-top:15px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.go-back:hover{
+background:black;
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+position:absolute;
+bottom:10px;
+font-size:14px;
+color:#444;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contact-container">
+
+<h2>Contact Me</h2>
+
+<form id="contactForm">
+
+<div class="form-group">
+<input type="text" id="name" placeholder="Your Name" required>
+</div>
+
+<div class="form-group">
+<input type="text" id="email" placeholder="Your Email" required>
+<div class="error" id="emailError"></div>
+</div>
+
+<div class="form-group">
+<input type="text" id="phone" placeholder="Phone Number">
+<div class="error" id="phoneError"></div>
+</div>
+
+<div class="form-group">
+<textarea rows="5" id="message" placeholder="Your Message" required></textarea>
+</div>
+
+<button type="submit" class="send-btn">Send Message</button>
+
+</form>
+
+<a href="bike.html" class="go-back">Go Back</a>
+
+</div>
+
+<footer>
+© 2026 Bike Showroom
+</footer>
+
+<script>
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let email=document.getElementById("email");
+let phone=document.getElementById("phone");
+
+let emailError=document.getElementById("emailError");
+let phoneError=document.getElementById("phoneError");
+
+emailError.innerHTML="";
+phoneError.innerHTML="";
+
+let emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+let phonePattern=/^[0-9]{10}$/;
+
+let valid=true;
+
+/* EMAIL VALIDATION */
+
+if(!emailPattern.test(email.value)){
+emailError.innerHTML="Enter a valid email address";
+email.classList.add("invalid");
+valid=false;
+}else{
+email.classList.remove("invalid");
+}
+
+/* PHONE VALIDATION */
+
+if(phone.value!=="" && !phonePattern.test(phone.value)){
+phoneError.innerHTML="Phone number must be exactly 10 digits";
+phone.classList.add("invalid");
+valid=false;
+}else{
+phone.classList.remove("invalid");
+}
+
+/* SUCCESS */
+
+if(valid){
+alert("Message sent successfully!");
+document.getElementById("contactForm").reset();
+}
+
+});
+
+</script>
+
+</body>
+</html>
